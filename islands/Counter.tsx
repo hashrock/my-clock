@@ -29,7 +29,7 @@ function BarGraph(props: BarGraphProps) {
   const barHeight = props.barHeight;
 
   return (
-    <svg width={barWidth} height={barHeight + 20} class="inline-block">
+    <svg width={barWidth} height={barHeight + 20} class="block mx-auto">
       <rect x={0} y={10} width={barWidth} height={barHeight} fill="lightgray" />
       <rect
         x={0}
