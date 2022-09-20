@@ -53,7 +53,10 @@ function BarGraph(props: BarGraphProps) {
 }
 
 export default function Counter(props: CounterProps) {
-  const [time, setTime] = useState("");
+  const [time, setTime] = useState(new Date().toLocaleTimeString([], {
+    hour: "2-digit",
+    minute: "2-digit",
+  }));
 
   useEffect(() => {
     const interval = setInterval(() => {
