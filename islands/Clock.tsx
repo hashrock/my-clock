@@ -1,9 +1,5 @@
 import { useEffect, useState } from "preact/hooks";
 
-interface CounterProps {
-  start: number;
-}
-
 interface BarGraphProps {
   title: string;
   min: Date;
@@ -52,7 +48,7 @@ function BarGraph(props: BarGraphProps) {
   );
 }
 
-export default function Counter(props: CounterProps) {
+export default function Clock() {
   const [time, setTime] = useState(new Date().toLocaleTimeString([], {
     hour: "2-digit",
     minute: "2-digit",
