@@ -25,26 +25,27 @@ function BarGraph(props: BarGraphProps) {
   const barHeight = props.barHeight;
 
   return (
-    <svg width={barWidth} height={barHeight + 20} class="block mx-auto">
-      <rect x={0} y={10} width={barWidth} height={barHeight} fill="lightgray" />
-      <rect
-        x={0}
-        y={10}
-        width={barWidth * progress / 100}
-        height={barHeight}
-        fill="gray"
-      />
-      <text
-        x={0}
-        y={barHeight + 20}
-        font-size={11}
-        font-weight={900}
-        fill="gray"
-        font-family="sans-serif"
-      >
+    <div class="w-fit">
+      <svg width={barWidth} height={barHeight + 20} class="block mx-auto">
+        <rect
+          x={0}
+          y={10}
+          width={barWidth}
+          height={barHeight}
+          fill="lightgray"
+        />
+        <rect
+          x={0}
+          y={10}
+          width={barWidth * progress / 100}
+          height={barHeight}
+          fill="gray"
+        />
+      </svg>
+      <p class="text-sm w-full text-left">
         {props.title} {progress}%
-      </text>
-    </svg>
+      </p>
+    </div>
   );
 }
 
@@ -96,57 +97,53 @@ export default function Clock() {
 
   return (
     <>
-      <div class="text-center">
-        <BarGraph
-          barHeight={120}
-          title="Day"
-          min={dayStart}
-          max={dayEnd}
-          value={now}
-        />
-      </div>
+      <BarGraph
+        barHeight={120}
+        title="Day"
+        min={dayStart}
+        max={dayEnd}
+        value={now}
+      />
 
-      <div class="text-7xl font-bold text-center my-16">
+      <h1 class="text-7xl font-bold text-center my-16">
         {time}
-      </div>
+      </h1>
 
-      <div class="text-center">
-        <BarGraph
-          barHeight={30}
-          title="Week"
-          min={weekStart}
-          max={weekEnd}
-          value={now}
-        />
-        <BarGraph
-          barHeight={6}
-          title="Q1"
-          min={thisQ1[0]}
-          max={thisQ1[1]}
-          value={now}
-        />
-        <BarGraph
-          barHeight={6}
-          title="Q2"
-          min={thisQ2[0]}
-          max={thisQ2[1]}
-          value={now}
-        />
-        <BarGraph
-          barHeight={6}
-          title="Q3"
-          min={thisQ3[0]}
-          max={thisQ3[1]}
-          value={now}
-        />
-        <BarGraph
-          barHeight={6}
-          title="Q4"
-          min={thisQ4[0]}
-          max={thisQ4[1]}
-          value={now}
-        />
-      </div>
+      <BarGraph
+        barHeight={30}
+        title="Week"
+        min={weekStart}
+        max={weekEnd}
+        value={now}
+      />
+      <BarGraph
+        barHeight={6}
+        title="Q1"
+        min={thisQ1[0]}
+        max={thisQ1[1]}
+        value={now}
+      />
+      <BarGraph
+        barHeight={6}
+        title="Q2"
+        min={thisQ2[0]}
+        max={thisQ2[1]}
+        value={now}
+      />
+      <BarGraph
+        barHeight={6}
+        title="Q3"
+        min={thisQ3[0]}
+        max={thisQ3[1]}
+        value={now}
+      />
+      <BarGraph
+        barHeight={6}
+        title="Q4"
+        min={thisQ4[0]}
+        max={thisQ4[1]}
+        value={now}
+      />
     </>
   );
 }
