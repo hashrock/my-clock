@@ -7,9 +7,15 @@ export default function Home() {
       <Head>
         <title>My Clock</title>
       </Head>
-      <div class="w-screen h-screen flex items-center justify-center flex-col">
+      <main class="w-screen h-screen flex items-center justify-center flex-col">
+        <a
+          href="/settings"
+          class="absolute top-5 right-10 border border-blue-200 py-1 px-3 rounded-lg text-black bg-blue-200 hover:(text-blue-400 bg-white) transition-colors"
+        >
+          Settings
+        </a>
         <Clock />
-      </div>
+      </main>
     </>
   );
 }

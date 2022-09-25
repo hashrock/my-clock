@@ -6,6 +6,23 @@ interface BarGraphProps {
   max: Date;
   value: Date;
   barHeight: number;
+  backgroundColor: string;
+  fillColor: string;
+}
+
+interface IColor {
+  dayBG: string;
+  dayFill: string;
+  weekBG: string;
+  weekFill: string;
+  q1BG: string;
+  q1Fill: string;
+  q2BG: string;
+  q2Fill: string;
+  q3BG: string;
+  q3Fill: string;
+  q4BG: string;
+  q4Fill: string;
 }
 
 function clamp(value: number, min: number, max: number) {
@@ -32,14 +49,14 @@ function BarGraph(props: BarGraphProps) {
           y={10}
           width={barWidth}
           height={barHeight}
-          fill="lightgray"
+          fill={props.backgroundColor}
         />
         <rect
           x={0}
           y={10}
           width={barWidth * progress / 100}
           height={barHeight}
-          fill="gray"
+          fill={props.fillColor}
         />
       </svg>
       <p class="text-sm w-full text-left">
@@ -50,6 +67,54 @@ function BarGraph(props: BarGraphProps) {
 }
 
 export default function Clock() {
+  const [dayBG, setDayBG] = useState("#D3D3D3");
+  const [dayFill, setDayFill] = useState("#808080");
+  const [weekBG, setWeekBG] = useState("#D3D3D3");
+  const [weekFill, setWeekFill] = useState("#808080");
+  const [q1BG, setQ1BG] = useState("#D3D3D3");
+  const [q1Fill, setQ1Fill] = useState("#808080");
+  const [q2BG, setQ2BG] = useState("#D3D3D3");
+  const [q2Fill, setQ2Fill] = useState("#808080");
+  const [q3BG, setQ3BG] = useState("#D3D3D3");
+  const [q3Fill, setQ3Fill] = useState("#808080");
+  const [q4BG, setQ4BG] = useState("#D3D3D3");
+  const [q4Fill, setQ4Fill] = useState("#808080");
+
+  useEffect(() => {
+    const item = localStorage.getItem("My Clock");
+    let stored: IColor;
+    if (item) {
+      stored = JSON.parse(item);
+      setDayBG(stored.dayBG);
+      setDayFill(stored.dayFill);
+      setWeekBG(stored.weekBG);
+      setWeekFill(stored.weekFill);
+      setQ1BG(stored.q1BG);
+      setQ1Fill(stored.q1Fill);
+      setQ2BG(stored.q2BG);
+      setQ2Fill(stored.q2Fill);
+      setQ3BG(stored.q3BG);
+      setQ3Fill(stored.q3Fill);
+      setQ4BG(stored.q4BG);
+      setQ4Fill(stored.q4Fill);
+    } else {
+      stored = {
+        dayBG: dayBG,
+        dayFill: dayFill,
+        weekBG: weekBG,
+        weekFill: weekFill,
+        q1BG: q1BG,
+        q1Fill: q1Fill,
+        q2BG: q2BG,
+        q2Fill: q2Fill,
+        q3BG: q3BG,
+        q3Fill: q3Fill,
+        q4BG: q4BG,
+        q4Fill: q4Fill,
+      };
+    }
+  }, []);
+
   const [time, setTime] = useState(new Date().toLocaleTimeString([], {
     hour: "2-digit",
     minute: "2-digit",
@@ -103,6 +168,8 @@ export default function Clock() {
         min={dayStart}
         max={dayEnd}
         value={now}
+        backgroundColor={dayBG}
+        fillColor={dayFill}
       />
 
       <h1 class="text-7xl font-bold text-center my-16">
@@ -115,6 +182,8 @@ export default function Clock() {
         min={weekStart}
         max={weekEnd}
         value={now}
+        backgroundColor={weekBG}
+        fillColor={weekFill}
       />
       <BarGraph
         barHeight={6}
@@ -122,6 +191,8 @@ export default function Clock() {
         min={thisQ1[0]}
         max={thisQ1[1]}
         value={now}
+        backgroundColor={q1BG}
+        fillColor={q1Fill}
       />
       <BarGraph
         barHeight={6}
@@ -129,6 +200,8 @@ export default function Clock() {
         min={thisQ2[0]}
         max={thisQ2[1]}
         value={now}
+        backgroundColor={q2BG}
+        fillColor={q2Fill}
       />
       <BarGraph
         barHeight={6}
@@ -136,6 +209,8 @@ export default function Clock() {
         min={thisQ3[0]}
         max={thisQ3[1]}
         value={now}
+        backgroundColor={q3BG}
+        fillColor={q3Fill}
       />
       <BarGraph
         barHeight={6}
@@ -143,6 +218,8 @@ export default function Clock() {
         min={thisQ4[0]}
         max={thisQ4[1]}
         value={now}
+        backgroundColor={q4BG}
+        fillColor={q4Fill}
       />
     </>
   );
