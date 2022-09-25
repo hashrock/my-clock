@@ -1,9 +1,15 @@
 import Clock from "../islands/Clock.tsx";
+import { Head } from "$fresh/runtime.ts";
 
 export default function Home() {
   return (
-    <div class="p-4 mx-auto max-w-screen-md">
-      <Clock />
-    </div>
+    <>
+      <Head>
+        <title>My Clock</title>
+      </Head>
+      <div class="w-screen h-screen flex items-center justify-center flex-col">
+        <Clock />
+      </div>
+    </>
   );
 }
