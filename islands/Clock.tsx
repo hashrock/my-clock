@@ -90,10 +90,9 @@ export default function Clock() {
   weekEnd.setDate(weekEnd.getDate() + (6 - 1 - weekEnd.getDay()));
 
   const dayStart = new Date();
-  dayStart.setHours(12, 0, 0, 0);
+  dayStart.setHours(0, 0, 0, 0); // start of day is at 00:00:00:00
   const dayEnd = new Date();
-  dayEnd.setDate(dayEnd.getDate() + 1);
-  dayEnd.setHours(5, 0, 0, 0);
+  dayEnd.setHours(23, 59, 59, 999); // end of day is at 23:59:59:999
 
   return (
     <>
